@@ -13,6 +13,10 @@ import random
 import pygame
 import fade
 
+def clear(lp):
+	lp.Reset()
+	lp.ButtonFlush()
+
 
 
 def scroll_vert(vert,lp):
@@ -20,7 +24,7 @@ def scroll_vert(vert,lp):
 	# while loop, color is red and waits 50ms before changing next one
 	but = 8
 	while (but > 0):
-		lp.LedCtrlXY(vert,but,100,0,0)
+		lp.LedCtrlXY(vert,but,random.randint(0,63),random.randint(0,63),random.randint(0,63))
 		but -= 1
 		pygame.time.wait(50)	
 
@@ -38,7 +42,7 @@ def scroll_horz(horz,lp):
         # while loop, color is red and waits 50ms before changing next one
         but = 8
         while (but > 0):
-                lp.LedCtrlXY(but,horz,100,0,0)
+                lp.LedCtrlXY(but,horz,random.randint(0,63),random.randint(0,63),random.randint(0,63))
                 but -= 1
                 pygame.time.wait(50)
 
@@ -54,13 +58,13 @@ def wipe_horz(horz, lp):
 def fill_vert(lp,time):
 	for x in range(8):
 		for y in range(8):
-			lp.LedCtrlXY(x,y+1,0,0,100)
+			lp.LedCtrlXY(x,y+1,random.randint(0,63),random.randint(0,63),random.randint(0,63))
 			pygame.time.wait(time)
 	
 def fill_horz(lp,time):
 	for y in range(8):
                 for x in range(8):
-                        lp.LedCtrlXY(x,y+1,0,50,10)
+                        lp.LedCtrlXY(x,y+1,random.randint(70,100),random.randint(70,100),random.randint(70,100))
                         pygame.time.wait(time)
 
 
@@ -81,6 +85,20 @@ def heart(lp):
 	lp.LedCtrlXY(2,6,100,0,0)
 	lp.LedCtrlXY(3,7,100,0,0)
 	lp.LedCtrlXY(4,7,100,0,0)
+
+def spiral(lp):
+	a=8
+	while a > 0:
+		lp.LedCtrlXY(0,a,0,100,0)
+		a -= 1
+	a=7
+	while a > 0:
+		lp.LedCtrlXY(a,7,0,100,0)
+		a-=1
+		
+			
+			
+	
 
 
 def main():
@@ -128,10 +146,6 @@ def main():
 	
 
 	fade.run_fade(8,8,lp)
-	lp.ButtonFlush()
-	print('first fade')
-	lp.Reset()
-	lp.ButtonFlush
 
 	fill_vert(lp,20)
 
@@ -139,11 +153,16 @@ def main():
 
 	fade.run_fade(8,8,lp)
 
-	lp.Reset()
-	lp.ButtonFlush
+	clear(lp)	
 
 	heart(lp) 
 
+	pygame.time.wait(1500)
+
+	lp.Reset()
+
+	spiral(lp)
+	
 	pygame.time.wait(2000)
 
 
