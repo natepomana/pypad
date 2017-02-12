@@ -10,18 +10,19 @@ except ImportError:
 		sys.exit("error loading launchpad.py")
 
 import random
-from pygame import time
+import pygame
 
 
-def wait():
-	time.wait(50)
+
 
 def scroll(lp):
+	# 8 because hight is 8
+	# while loop, color is red and waits 50ms before changing next one
 	but = 8
 	while (but > 0):
 		lp.LedCtrlXY(3,but,100,0,0)
 		but -= 1
-	
+		pygame.time.wait(50)	
 
 
 
@@ -42,39 +43,27 @@ def main():
 	lp.ButtonFlush()
 	print('at individual light')	
 	lp.LedCtrlXY(0,0,100,0,0)
-	lp.LedCtrlXY(1,1,100,0,0)
-	lp.LedCtrlXY(2,2,100,0,0)
-	lp.LedCtrlXY(3,3,100,0,0)
-
-	time.wait(500)
-	print('flushing')
+	pygame.time.wait(500)
+	#forget coordinates, doesn't wipe visuals.
 	lp.ButtonFlush()
 
+	#check above
 	scroll(lp)
+	
+	#resets colors
+	lp.Reset()
 
-	lp.LedCtrlXY(1,1,0,64,0,0)
+	sample =  lp.LedCtrlXY(1,1,0,64,0)
 	print('attempting sound')
-	if (lp.LedCtrlXY(1,1,0,64,0)):
-		print('in loop')
-		pygame.mixer.init()
-		pygame.mixer.load('01.wav')
-		pygame.mixer.play()
+
+
+	pygame.mixer.init()
+	pygame.mixer.load('01.wav')
+	pygame.mixer.play()
 	
 
 
-	# Lightshow
-	butHit = 0
-	while 1:
-		lp.LedCtrlRaw( random.randint(0,127), random.randint(0,63), random.randint(0,63), random.randint(0,63) )
-		time.wait( 50 )
-		
-		but = lp.ButtonStateRaw()
-		if but != []:
-			butHit += 1
-			print( butHit, " button: ", but )
-			if butHit > 10:
-				break
-
+	pygame.time.wait(2000)
 
 
 	lp.Reset() # turn all LEDs off
