@@ -17,15 +17,29 @@ def clear(lp):
 	lp.Reset()
 	lp.ButtonFlush()
 
-def square_fill(lp):
+def square_fill(depth,lp):
 	"""
 	Go around the square and light up buttons in order
+	:param depth: how many layers to fill in (1 being just outside layer and 4 being entire board)
+	:param lp: launchpad object
 	:return:
 	"""
-	light_vert_down(0,1,8,lp,100)
-	light_hori_right(1,8,7,lp,100)
-	light_vert_up(7,7,7,lp,100)
-	light_hori_left(6,1,6,lp,100)
+	vd = 0
+	hr = 1
+	vu = 7
+	hl = 1
+	button_num = 8
+	while depth > 0:
+		light_vert_down(vd,vd+1,button_num,lp,100)
+		light_hori_right(hr,9-hr,button_num-1,lp,100)
+		light_vert_up(vu,vu,button_num-1,lp,100)
+		light_hori_left(7-hl,hl,button_num-2,lp,100)
+		vd += 1
+		hr += 1
+		vu -= 1
+		hl += 1
+
+
 
 def light_vert_down(col, row, num_buttons, lp, time):
 	"""
