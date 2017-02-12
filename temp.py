@@ -38,6 +38,8 @@ def square_fill(depth,lp):
 		hr += 1
 		vu -= 1
 		hl += 1
+		button_num -= 2
+		depth -= 1
 
 
 
@@ -429,20 +431,38 @@ def main():
 
 	clear(lp)	
 	
-	square_fill(lp)
-	pygame.time.wait(1650)
-
+	square_fill(4,lp)
+	pygame.time.wait(2200)
+	swipe_right(lp,20)
+	swipe_left(lp,20)
+	swipe_up(lp,20)
+	swipe_down(lp,20)
 	clear(lp)
 
+	silly = 20
+	while (silly > 0):
+		diag_fill(lp)
+		pygame.time.wait(10)
+		clear(lp)
+		alternate_diag_fill(lp)
+		pygame.time.wait(10)
+		clear(lp)
+		silly -= 1
+
+	"""
 	diag_fill(lp)
-	pygame.time.wait(500)
+	pygame.time.wait(250)
 	clear(lp)
 
 	alternate_diag_fill(lp)
-	pygame.time.wait(500)
+	pygame.time.wait(250)
 	clear(lp)
 
 	diag_fill(lp)		
+	"""
+	pygame.time.wait(500)
+	
+
 	
 	words(lp)	
 
