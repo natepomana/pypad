@@ -50,8 +50,32 @@ def main():
 	print('flushing')
 	lp.ButtonFlush()
 
+<<<<<<< HEAD
 	scroll(lp)
 	time.wait(4000)
+=======
+	lp.LedCtrlXY(1,1,0,64,0,0)
+	print('attempting sound')
+	if lp.LedCtrlXY(1,1,0,64,0,0):
+		pygame.mixer.init()
+		pygame.mixer.load('01.wav')
+		pygame.mixer.play()
+	
+
+
+	# Lightshow
+	butHit = 0
+	while 1:
+		lp.LedCtrlRaw( random.randint(0,127), random.randint(0,63), random.randint(0,63), random.randint(0,63) )
+		time.wait( 50 )
+		
+		but = lp.ButtonStateRaw()
+		if but != []:
+			butHit += 1
+			print( butHit, " button: ", but )
+			if butHit > 10:
+				break
+>>>>>>> b368a08a88273a819bcd1c58a0d31d9bc23002b1
 
 
 	lp.Reset() # turn all LEDs off
