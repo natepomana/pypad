@@ -13,6 +13,18 @@ import random
 from pygame import time
 
 
+def wait():
+	time.wait(50)
+
+def scroll(lp):
+	but = 8
+	while (but > 0):
+		lp.LedCtrlXY(3,but,100,0,0)
+		but -= 1
+	
+
+
+
 def main():
 	mode = None
 
@@ -26,7 +38,6 @@ def main():
 			print("Loaded")
 			mode = "Mk2"
 
-
 	# Clear the buffer because the Launchpad remembers everything :-)
 	lp.ButtonFlush()
 	print('at individual light')	
@@ -35,25 +46,12 @@ def main():
 	lp.LedCtrlXY(2,2,100,0,0)
 	lp.LedCtrlXY(3,3,100,0,0)
 
-	lp.LedCtrlXY(4,8,100,0,0)
-
-	time.wait(5000)
+	time.wait(500)
 	print('flushing')
 	lp.ButtonFlush()
 
-
-	# Lightshow
-	butHit = 0
-	while 1:
-		lp.LedCtrlRaw( random.randint(0,127), random.randint(0,63), random.randint(0,63), random.randint(0,63) )
-		time.wait( 50 )
-		
-		but = lp.ButtonStateRaw()
-		if but != []:
-			butHit += 1
-			print( butHit, " button: ", but )
-			if butHit > 10:
-				break
+	scroll(lp)
+	time.wait(4000)
 
 
 	lp.Reset() # turn all LEDs off
