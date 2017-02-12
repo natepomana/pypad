@@ -18,14 +18,14 @@ def clear(lp):
 	lp.ButtonFlush()
 
 def square_fill(lp):
-    """
-    Go around the square and light up buttons in order
-    :return:
-    """
-	light_vert_down(0,1,8,lp,1000)
-	light_hori_right(1,8,7,lp,1000)
-	light_vert_up(8,7,7,lp,1000)
-	light_hori_left(7,0,6,lp,1000)
+	"""
+	Go around the square and light up buttons in order
+	:return:
+	"""
+	light_vert_down(0,1,8,lp,100)
+	light_hori_right(1,8,7,lp,100)
+	light_vert_up(7,7,7,lp,100)
+	light_hori_left(6,1,6,lp,100)
 
 def light_vert_down(col, row, num_buttons, lp, time):
 	"""
@@ -390,13 +390,18 @@ def main():
 	cube(4,5,4,10,lp)
 
 	
-	pygame.time.wait(3000)
+	pygame.time.wait(1000)
 
 #	words(lp)
 
+#	pygame.time.wait(2000)
+
+	clear(lp)	
+	
+	square_fill(lp)
 	pygame.time.wait(2000)
 
-#	clear(lp)	
+		
 
 	#lp.Reset() # turn all LEDs off
 	lp.Close() # close the Launchpad (will quit with an error due to a PyGame bug)
