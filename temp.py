@@ -15,15 +15,22 @@ import pygame
 
 
 
-def scroll(lp):
+def scroll_vert(vert,lp):
 	# 8 because hight is 8
 	# while loop, color is red and waits 50ms before changing next one
 	but = 8
 	while (but > 0):
-		lp.LedCtrlXY(3,but,100,0,0)
+		lp.LedCtrlXY(vert,but,100,0,0)
 		but -= 1
 		pygame.time.wait(50)	
 
+def wipe_vert(vert, lp):
+	#erase all color in vertical col
+	but = 8
+	while (but > 0):
+		lp.LedCtrlXY(vert,but,0,0,0)
+		but -= 1
+		pygame.time.wait(50)
 
 
 def main():
@@ -40,26 +47,32 @@ def main():
 			mode = "Mk2"
 
 	# Clear the buffer because the Launchpad remembers everything :-)
-	lp.ButtonFlush()
+
+        pygame.mixer.init()
+        pygame.mixer.music.load('spectre.wav')
+        pygame.mixer.music.play()
+
+	
+
+
 	print('at individual light')	
 	lp.LedCtrlXY(0,0,100,0,0)
 	pygame.time.wait(500)
 	#forget coordinates, doesn't wipe visuals.
-	lp.ButtonFlush()
+
 
 	#check above
-	scroll(lp)
+	scroll_vert(3,lp)
+	scroll_vert(2,lp)
+	pygame.time.wait(200)
+
+	wipe_vert(3,lp)
+	wipe_vert(2,lp)
+
+	scroll_vert(7,lp)
 	
 	#resets colors
 	lp.Reset()
-
-	sample =  lp.LedCtrlXY(1,1,0,64,0)
-	print('attempting sound')
-
-
-	pygame.mixer.init()
-	pygame.mixer.load('01.wav')
-	pygame.mixer.play()
 	
 
 
