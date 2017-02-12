@@ -41,6 +41,14 @@ def main():
 	print('flushing')
 	lp.ButtonFlush()
 
+	lp.LedCtrlXY(1,1,0,64,0,0)
+	print('attempting sound')
+	if lp.LedCtrlXY(1,1,0,64,0,0):
+		pygame.mixer.init()
+		pygame.mixer.load('01.wav')
+		pygame.mixer.play()
+	
+
 
 	# Lightshow
 	butHit = 0
