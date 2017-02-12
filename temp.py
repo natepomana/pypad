@@ -273,7 +273,7 @@ def bottleneck(lp):
 
 
 def words(lp):
-	lp.LedCtrlString( "BrickHack3! ", 0, 155 ,0, -1 )
+	lp.LedCtrlString( "BrickHack3! ", 100,0 ,100, -1 )
 
 def cube(x,y,size,time,lp):
 	i=0
@@ -286,8 +286,25 @@ def cube(x,y,size,time,lp):
 			pygame.time.wait(time)
 		i += 1
 
+def diag_fill(lp):
+	light_hori_right(0,8,8,lp,0)
+        light_hori_right(0,7,7,lp,0)
+        light_hori_right(0,6,6,lp,0)
+        light_hori_right(0,5,5,lp,0)
+        light_hori_right(0,4,4,lp,0)
+        light_hori_right(0,3,3,lp,0)
+        light_hori_right(0,2,2,lp,0)
+        light_hori_right(0,1,1,lp,0)
 
-
+def alternate_diag_fill(lp):
+	light_hori_left(7,1,8,lp,0)
+        light_hori_left(7,2,7,lp,0)
+        light_hori_left(7,3,6,lp,0)
+        light_hori_left(7,4,5,lp,0)
+        light_hori_left(7,5,4,lp,0)
+        light_hori_left(7,6,3,lp,0)
+        light_hori_left(7,7,2,lp,0)
+        light_hori_left(7,8,1,lp,0)
 
 def main():
 	mode = None
@@ -399,9 +416,21 @@ def main():
 	clear(lp)	
 	
 	square_fill(lp)
-	pygame.time.wait(2000)
+	pygame.time.wait(1650)
 
-		
+	clear(lp)
+
+	diag_fill(lp)
+	pygame.time.wait(500)
+	clear(lp)
+
+	alternate_diag_fill(lp)
+	pygame.time.wait(500)
+	clear(lp)
+
+	diag_fill(lp)		
+	
+	words(lp)	
 
 	#lp.Reset() # turn all LEDs off
 	lp.Close() # close the Launchpad (will quit with an error due to a PyGame bug)
