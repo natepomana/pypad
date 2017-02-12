@@ -157,7 +157,58 @@ def border(lp,lev):
 		lp.LedCtrlXY(count,bot,0,0,100)
 		count += 1
 		
-def top_triangle	
+def bottleneck(lp):
+	scroll_vert(4, lp, 0)
+	lp.LedCtrlXY(3,7,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	lp.LedCtrlXY(5,7,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	lp.LedCtrlXY(2,8,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	lp.LedCtrlXY(3,8,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	lp.LedCtrlXY(4,8,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	lp.LedCtrlXY(5,8,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	lp.LedCtrlXY(6,8,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+
+	lp.LedCtrlXY(5,2,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(5,1,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(6,1,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(3,2,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(3,1,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(2,1,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	
+	lp.LedCtrlXY(0,4,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	lp.LedCtrlXY(1,4,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(2,4,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(3,4,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(4,4,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(4,4,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(5,4,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	lp.LedCtrlXY(6,4,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(7,4,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+
+	lp.LedCtrlXY(0,5,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+	lp.LedCtrlXY(1,5,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(2,5,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(3,5,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(4,5,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(4,5,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(5,5,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(6,5,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+        lp.LedCtrlXY(7,5,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+
+
+def words(lp):
+	lp.LedCtrlString( "BrickHack3! ", 0, 155 ,0, -1 )
+
+def cube(x,y,size,time,lp):
+	i=0
+	j=0
+	while (i < size):
+		j = 0
+		while (j < size):
+			lp.LedCtrlXY(x+i,y+j,random.randint(0,63),random.randint(0,63),random.randint(0,63))
+			j += 1
+			pygame.time.wait(time)
+		i += 1
+
 
 
 
@@ -248,6 +299,27 @@ def main():
 	pygame.time.wait(1000)
 
 	clear(lp)
+	
+	bottleneck(lp)
+	
+	pygame.time.wait(1000)
+
+	clear(lp)
+
+
+	cube(0,1,4,10,lp)
+	cube(4,1,4,10,lp)
+	cube(0,5,4,10,lp)
+	cube(4,5,4,10,lp)
+
+	
+	pygame.time.wait(3000)
+
+#	words(lp)
+
+	pygame.time.wait(2000)
+
+#	clear(lp)	
 
 	#lp.Reset() # turn all LEDs off
 	lp.Close() # close the Launchpad (will quit with an error due to a PyGame bug)
