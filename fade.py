@@ -1,4 +1,6 @@
 
+
+
 def run_fade(row_len, col_len,lp):
     # create board
     board = [[0 for _ in range(row_len)] for _ in range(col_len)]
@@ -23,6 +25,8 @@ def run_fade(row_len, col_len,lp):
                     board[i][j] = 0
                     if i == row_len-1 and j == col_len-1:
                         done = True
+
+
 
 
 #run_fade(8,8)

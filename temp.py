@@ -17,6 +17,83 @@ def clear(lp):
 	lp.Reset()
 	lp.ButtonFlush()
 
+def square_fill(lp):
+    """
+    Go around the square and light up buttons in order
+    :return:
+    """
+	light_vert_down(0,1,8,lp,1000)
+	light_hori_right(1,8,7,lp,1000)
+	light_vert_up(8,7,7,lp,1000)
+	light_hori_left(7,0,6,lp,1000)
+
+def light_vert_down(col, row, num_buttons, lp, time):
+	"""
+	Lights up a column from top to bottom starting at the specific row value and
+	going until the number of buttons has been lit up.
+	:param col: column to light up (actually x value)
+	:param row: row to start lighting up from (y value)
+	:param num_buttons: number of buttons to light up (including starting)
+	:param lp: launchpad object
+	:param time: time to wait in between light ups
+	:return:
+	"""
+	button_count = 0
+	while button_count < num_buttons:
+		lp.LedCtrlXY(col, row + button_count, 100, 0, 0)
+		pygame.time.wait(time)
+		button_count += 1
+
+def light_vert_up(col, row, num_buttons, lp, time):
+	"""
+	Lights up a column from bottom to top starting at the specific row value and
+	going until the number of buttons has been lit up.
+	:param col: column to light up (actually x value)
+	:param row: row to start lighting up from (y value)
+	:param num_buttons: number of buttons to light up (including starting)
+	:param lp: launchpad object
+	:param time: time to wait in between light ups
+	:return:
+	"""
+	button_count = 0
+	while button_count < num_buttons:
+		lp.LedCtrlXY(col, row - button_count, 100, 0, 0)
+		pygame.time.wait(time)
+		button_count += 1
+
+def light_hori_right(col, row, num_buttons, lp, time):
+	"""
+	Lights up a row from left to right starting at the specific col value and
+	going until the number of buttons has been lit up.
+	:param col: column to start lighting up from (x value)
+	:param row: row to light up (actually y value)
+	:param num_buttons: number of buttons to light up (including starting)
+	:param lp: launchpad object
+	:param time: time to wait in between light ups
+	:return:
+	"""
+	button_count = 0
+	while button_count < num_buttons:
+		lp.LedCtrlXY(col + button_count, row, 100, 0, 0)
+		pygame.time.wait(time)
+		button_count += 1
+
+def light_hori_left(col, row, num_buttons, lp, time):
+	"""
+	Lights up a row from right to left starting at the specific col value and
+	going until the number of buttons has been lit up.
+	:param col: column to start lighting up from (x value)
+	:param row: row to light up (actually y value)
+	:param num_buttons: number of buttons to light up (including starting)
+	:param lp: launchpad object
+	:param time: time to wait in between light ups
+	:return:
+	"""
+	button_count = 0
+	while button_count < num_buttons:
+		lp.LedCtrlXY(col - button_count, row, 100, 0, 0)
+		pygame.time.wait(time)
+		button_count += 1
 
 
 def scroll_vert(vert,lp,time):
