@@ -1,4 +1,4 @@
-
+	
 import sys
 
 try:
@@ -64,6 +64,23 @@ def fill_horz(lp,time):
                         pygame.time.wait(time)
 
 
+def heart(lp):
+	lp.LedCtrlXY(1,2,100,0,0)
+	lp.LedCtrlXY(2,2,100,0,0)
+	lp.LedCtrlXY(5,2,100,0,0)
+	lp.LedCtrlXY(6,2,100,0,0)
+	lp.LedCtrlXY(0,3,100,0,0)
+	lp.LedCtrlXY(3,3,100,0,0)
+	lp.LedCtrlXY(4,3,100,0,0)
+	lp.LedCtrlXY(7,3,100,0,0)
+	lp.LedCtrlXY(0,4,100,0,0)
+	lp.LedCtrlXY(7,4,100,0,0)
+	lp.LedCtrlXY(1,5,100,0,0)
+	lp.LedCtrlXY(6,5,100,0,0)
+	lp.LedCtrlXY(5,6,100,0,0)
+	lp.LedCtrlXY(2,6,100,0,0)
+	lp.LedCtrlXY(3,7,100,0,0)
+	lp.LedCtrlXY(4,7,100,0,0)
 
 
 def main():
@@ -90,12 +107,12 @@ def main():
 	pygame.time.wait(500)
 
 	
-	scroll_vert(3,lp)
-	scroll_vert(2,lp)
+	scroll_vert(0,lp)
+	scroll_vert(7,lp)
 	pygame.time.wait(200)
 
-	wipe_vert(3,lp)
-	wipe_vert(2,lp)
+	wipe_vert(0,lp)
+	wipe_vert(7,lp)
 
 	#outside border
 	scroll_vert(8,lp)
@@ -121,6 +138,11 @@ def main():
 	fill_horz(lp,20)
 
 	fade.run_fade(8,8,lp)
+
+	lp.Reset()
+	lp.ButtonFlush
+
+	heart(lp) 
 
 	pygame.time.wait(2000)
 
